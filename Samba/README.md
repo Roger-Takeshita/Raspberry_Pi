@@ -17,7 +17,7 @@
 [Go Back to Contents](#table-of-contents)
 
 - [How to create a Samba share using a Raspberry Pi and an External Hard Drive](https://gennaromigliaccio.com/creating-a-samba-share-using-a-raspberry-pi-and-an-external-hard-drive)
-- [How to add or delete a samba user under Linux](<https://www.thegeekdiary.com/how-to-add-or-delete-a-samba-user-under-linux/#:~:text=Deleting%20the%20Samba%20user&text=delete%20samba%20user(john)%20using,smbpasswd%20command%20with%20%2Dx%20option.&text=2.,'userdel%20%2Dr'%20command.>)
+- [How to add or delete a samba user under Linux](https://www.thegeekdiary.com/how-to-add-or-delete-a-samba-user-under-linux/)
 
 ## Find Driver UUID
 
@@ -35,7 +35,7 @@
   # /dev/sda1: PARTLABEL="Microsoft reserved partition" PARTUUID="5030def0-a593-427b-b882-8394ea8629af"
 ```
 
-> `UUID="FAAB-16FE"`
+> `UUID="B4BC2BCDBC2B8946"`
 
 ## Automatically Mount Drive
 
@@ -48,7 +48,7 @@
 Add the UUID to the list
 
 ```Bash
-  UUID=FAAB-16FE /mnt/USB3 auto defaults,user,nofail 0 2
+  UUID=B4BC2BCDBC2B8946 /mnt/USB1 auto defaults,user,nofail 0 2
 ```
 
 # Samba Drive
@@ -58,6 +58,7 @@ Add the UUID to the list
 [Go Back to Contents](#table-of-contents)
 
 ```Bash
+  sudo apt-get install samba samba-common-bin
   sudo vim /etc/samba/smb.conf
 ```
 
@@ -87,27 +88,9 @@ Add the UUID to the list
 [Go Back to Contents](#table-of-contents)
 
 ```Bash
-  [USB1 - Data]
-  comment = Data
-  path = /mnt/USB1/
-  public = no
-  writeable = yes
-  create mask = 0777
-  directory mask = 0777
-  valid users = roger-that
-
-  [USB2 - DB]
-  comment = DB
-  path = /mnt/USB2/
-  public = no
-  writeable = yes
-  create mask = 0777
-  directory mask = 0777
-  valid users = roger-that
-
-  [USB3 - Media]
-  comment = Media
-  path = /mnt/USB3/
+  [Server]
+  comment = Server
+  path = /mnt/USB1
   public = no
   writeable = yes
   create mask = 0777
@@ -132,5 +115,5 @@ Delete a Samba user
 [Go Back to Contents](#table-of-contents)
 
 ```Bash
-  sudo service smbd restart
+  sudo systemctl restart smbd
 ```
