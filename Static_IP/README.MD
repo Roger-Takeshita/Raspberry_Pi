@@ -76,12 +76,14 @@
       interface eth0                                # Static ethernet adapter
       static ip_address=10.0.0.100/24               # Static IP address, 24 is domestic IP
       static routers=10.0.0.1                       # router's IP
-      static domain_name_servers=8.8.8.8 8.8.8.4.4  # google's IP
+      static domain_name_servers=10.0.0.1           # router's IP
+      # static domain_name_servers=8.8.8.8 8.8.4.4    # google's IP
 
       interface wlan0                               # Static wireless adapter
       static ip_address=10.0.0.99/24                # Static IP address, 24 is domestic IP
       static routers=10.0.0.1                       # router's IP
-      static domain_name_servers=8.8.8.8 8.8.8.4.4  # google's IP
+      static domain_name_servers=10.0.0.1           # router's IP
+      # static domain_name_servers=8.8.8.8 8.8.4.4  # google's IP
     ```
 
     - After saving the file, reboot (`sudo reboot now`)
