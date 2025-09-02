@@ -1,13 +1,23 @@
-<h1 id='contents'>Table of Contents</h1>
-
-- [STATIC IP](#static-ip)
-  - [Check Current IP Address](#check-current-ip-address)
-  - [Check Router's Gateway (Router IP)](#check-routers-gateway-router-ip)
-  - [dhcpcd.conf](#dhcpcdconf)
-  - [Update Config](#update-config)
-  - [Update wpa_supplicant.conf](#update-wpa_supplicantconf)
-
 # STATIC IP
+
+## Table of Contents
+
+<details>
+  <summary id='table-of-contents'>
+    <strong>Table of Contents</strong>
+  </summary>
+
+<!-- Begin Table of Contents GFM -->
+
+- [Check Current IP Address](#check-current-ip-address)
+- [Check Router's Gateway (Router IP)](#check-routers-gateway-router-ip)
+- [dhcpcd.conf](#dhcpcdconf)
+- [Update Config](#update-config)
+- [Update wpa_supplicant.conf](#update-wpa_supplicantconf)
+
+<!-- End Table of Contents -->
+
+</details>
 
 ## Check Current IP Address
 
@@ -69,7 +79,6 @@
 [Go Back to Contents](#contents)
 
 - In `/etc/dhcpcd.conf`
-
   - Add the following information on the first line:
 
     ```Bash
@@ -80,7 +89,7 @@
       # static domain_name_servers=8.8.8.8 8.8.4.4    # google's IP
 
       interface wlan0                               # Static wireless adapter
-      static ip_address=10.0.0.99/24                # Static IP address, 24 is domestic IP
+      static ip_address=10.0.0.100/24               # Static IP address, 24 is domestic IP
       static routers=10.0.0.1                       # router's IP
       static domain_name_servers=10.0.0.1           # router's IP
       # static domain_name_servers=8.8.8.8 8.8.4.4  # google's IP
@@ -112,7 +121,6 @@
 ## Update wpa_supplicant.conf
 
 - In `/etc/wpa_supplicant.conf`
-
   - add `update_config=1` to enable WiFi to connect using the system interface
 
     ```Bash

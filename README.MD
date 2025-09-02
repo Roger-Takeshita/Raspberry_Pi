@@ -13,6 +13,7 @@
   - [Reboot/Shutdown](#rebootshutdown)
   - [Install/Remove](#installremove)
 - [SD Backup](#sd-backup)
+  - [Command Line](#command-line)
 
 <!-- End Table of Contents -->
 
@@ -36,14 +37,14 @@
 
 ### Reboot/Shutdown
 
-```Bash
+```bash
    sudo reboot
    sudo shutdown -h now
 ```
 
 ### Install/Remove
 
-```Bash
+```bash
    sudo get-apt install
    sudo get-apt remove
 ```
@@ -61,3 +62,19 @@
 ```
 
 > Since we are running the command using `sudo` we need to specify the full path (user path) to output the image
+
+### Command Line
+
+```bash
+diskutil list
+# /dev/disk5 (internal, physical):
+#    #:                       TYPE NAME                    SIZE       IDENTIFIER
+#    0:     FDisk_partition_scheme                        *32.0 GB    disk5
+#    1:             Windows_FAT_32 boot                    268.4 MB   disk5s1
+#    2:                      Linux                         31.7 GB    disk5s2
+
+diskutil unmountDisk /dev/disk5
+# Unmount of all volumes on disk5 was successful
+
+sudo dd if=/dev/rdisk5 of=/Users/roger-that/Desktop/pi_full_backup.img bs=4m status=progress
+```
