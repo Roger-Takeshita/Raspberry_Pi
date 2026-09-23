@@ -97,6 +97,14 @@
 
     - After saving the file, reboot (`sudo reboot now`)
 
+```bash
+sudo nmcli connection modify "Wired connection 1" \
+  ipv4.method manual \
+  ipv4.addresses 10.0.0.100/24 \
+  ipv4.gateway 10.0.0.1 \
+  ipv4.dns "10.0.0.1"
+```
+
 ## Update Config
 
 [Go Back to Contents](#contents)
