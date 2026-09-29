@@ -14,6 +14,9 @@
 - [dhcpcd.conf](#dhcpcdconf)
 - [Update Config](#update-config)
 - [Update wpa_supplicant.conf](#update-wpa_supplicantconf)
+- [DNS](#dns)
+  - [Raspberry Pi](#raspberry-pi)
+  - [Macbook](#macbook)
 
 <!-- End Table of Contents -->
 
@@ -134,3 +137,57 @@ sudo nmcli connection modify "Wired connection 1" \
     ```Bash
       update_config=1
     ```
+
+## DNS
+
+### Raspberry Pi
+
+1. Set Custom DNS
+
+   ```bash
+   sudo hostnamectl set-hostname server
+   ```
+
+   ```bash
+   sudo vim /etc/hosts
+
+   # 127.0.0.1       localhost
+   # ::1             localhost ip6-localhost ip6-loopback
+   # ff02::1         ip6-allnodes
+   # ff02::2         ip6-allrouters
+   # 127.0.1.1       server
+   ```
+
+2. Restart
+
+   ```bash
+   sudo systemctl restart avahi-daemon
+
+   # or
+
+   sudo reboot
+   ```
+
+### Macbook
+
+- Check current config
+
+  ```bash
+  scutil --get HostName
+  scutil --get LocalHostName
+  scutil --get ComputerName
+  ```
+
+- Set custom DNS
+
+```bash
+sudo scutil --set LocalHostName roger-that
+sudo scutil --set ComputerName "Roger-That"
+sudo scutil --set HostName roger-that
+```
+
+- Restart
+
+```bash
+sudo killall -HUP mDNSResponder
+```
